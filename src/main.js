@@ -407,7 +407,7 @@ function setupStudioGallery() {
     });
   });
 
-  // Smooth entrance audio with progressive volume rise
+  // Smooth entrance audio with progressive 1s volume ramp
   let audioFadedIn = false;
   const triggerSmoothAudioEntrance = () => {
     if (audioFadedIn) return;
@@ -416,14 +416,14 @@ function setupStudioGallery() {
       audioFadedIn = true;
       isSoundMuted = false;
       updateSoundUI();
-      fadeInVideoAudio(activeVideo, 0.75, 2.6);
+      fadeInVideoAudio(activeVideo, 0.75, 1.0);
     }
   };
 
-  // Attempt initial unmuted audio fade-in on load
+  // Attempt unmuted audio right away on load
   const firstVideo = slides[0]?.querySelector('video');
   if (firstVideo) {
-    firstVideo.volume = 0.02;
+    firstVideo.volume = 0.05;
     firstVideo.muted = false;
     const initialPlay = firstVideo.play();
     if (initialPlay !== undefined) {
@@ -431,29 +431,28 @@ function setupStudioGallery() {
         audioFadedIn = true;
         isSoundMuted = false;
         updateSoundUI();
-        gsap.to(firstVideo, { volume: 0.75, duration: 2.8, ease: 'power1.out' });
+        gsap.to(firstVideo, { volume: 0.75, duration: 1.0, ease: 'power1.out' });
       }).catch(() => {
-        // Autoplay policy prevented immediate unmuted playback
+        // Autoplay policy: play muted immediately so it buffers and plays
         firstVideo.muted = true;
         firstVideo.play().catch(() => {});
       });
     }
   }
 
-  // On first user interaction anywhere on page, trigger smooth fade-in
-  const onUserInteraction = () => {
+  // On any immediate gesture (first mouse movement, click, scroll, touch), unlock and ramp in 1s
+  const onImmediateGesture = () => {
     triggerSmoothAudioEntrance();
-    window.removeEventListener('click', onUserInteraction);
-    window.removeEventListener('touchstart', onUserInteraction);
-    window.removeEventListener('scroll', onUserInteraction, { passive: true });
-    window.removeEventListener('wheel', onUserInteraction, { passive: true });
-    window.removeEventListener('pointerdown', onUserInteraction);
+    ['pointerdown', 'mousedown', 'touchstart', 'pointermove', 'mousemove', 'wheel', 'scroll', 'keydown'].forEach((evt) => {
+      window.removeEventListener(evt, onImmediateGesture);
+      document.removeEventListener(evt, onImmediateGesture);
+    });
   };
-  window.addEventListener('click', onUserInteraction, { once: true });
-  window.addEventListener('touchstart', onUserInteraction, { once: true });
-  window.addEventListener('scroll', onUserInteraction, { once: true, passive: true });
-  window.addEventListener('wheel', onUserInteraction, { once: true, passive: true });
-  window.addEventListener('pointerdown', onUserInteraction, { once: true });
+
+  ['pointerdown', 'mousedown', 'touchstart', 'pointermove', 'mousemove', 'wheel', 'scroll', 'keydown'].forEach((evt) => {
+    window.addEventListener(evt, onImmediateGesture, { passive: true });
+    document.addEventListener(evt, onImmediateGesture, { passive: true });
+  });
 
   gallery.querySelector('.gallery-prev')?.addEventListener('click', () => update(active - 1));
   gallery.querySelector('.gallery-next')?.addEventListener('click', () => update(active + 1));

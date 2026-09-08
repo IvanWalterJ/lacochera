@@ -369,43 +369,67 @@ img, video, canvas {
 }
 
 .text-outline {
+  position: relative;
   display: inline-block;
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.35) 38%,
-    #ffffff 50%,
-    rgba(255, 255, 255, 0.35) 62%,
-    rgba(255, 255, 255, 0.25) 100%
-  );
-  background-size: 260% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.45);
-  animation: textLightSweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  transition: -webkit-text-stroke 0.3s;
+  background: none; /* No gray fill, hollow black inside */
+  transition: -webkit-text-stroke 0.3s ease;
 }
 
-@keyframes textLightSweep {
+.text-outline::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #ffffff;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 1) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 1) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  -webkit-mask-size: 260% 100%;
+  mask-size: 260% 100%;
+  animation: outlineLightPass 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes outlineLightPass {
   0% {
-    background-position: 160% 0;
-    -webkit-text-stroke-color: rgba(255, 255, 255, 0.4);
+    -webkit-mask-position: 180% 0;
+    mask-position: 180% 0;
     filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
   }
-  42% {
-    -webkit-text-stroke-color: rgba(255, 255, 255, 0.45);
+  30% {
+    -webkit-mask-position: 180% 0;
+    mask-position: 180% 0;
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
   }
   50% {
-    -webkit-text-stroke-color: #ffffff;
-    filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.75));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
   }
-  58% {
-    -webkit-text-stroke-color: rgba(255, 255, 255, 0.45);
+  65% {
+    -webkit-mask-position: -80% 0;
+    mask-position: -80% 0;
+    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
   }
   100% {
-    background-position: -160% 0;
-    -webkit-text-stroke-color: rgba(255, 255, 255, 0.4);
+    -webkit-mask-position: -80% 0;
+    mask-position: -80% 0;
     filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
   }
 }
