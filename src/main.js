@@ -301,16 +301,31 @@ function setupStudioGallery() {
     });
   };
 
-  const fadeInVideoAudio = (video, targetVol = 0.75, duration = 2.5) => {
+  const playWithVolumeRamp = (video, targetVol = 0.75, duration = 1.0) => {
     if (!video) return;
     video.muted = false;
-    video.volume = 0.02;
-    gsap.killTweensOf(video);
-    gsap.to(video, {
-      volume: targetVol,
-      duration: duration,
-      ease: 'power1.out'
-    });
+    video.volume = 0.05;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          isSoundMuted = false;
+          updateSoundUI();
+          gsap.killTweensOf(video);
+          gsap.to(video, {
+            volume: targetVol,
+            duration: duration,
+            ease: 'power1.out'
+          });
+        })
+        .catch(() => {
+          // If unmuted play is blocked by browser policy, keep video playing muted
+          video.muted = true;
+          video.play().catch(() => {});
+          isSoundMuted = true;
+          updateSoundUI();
+        });
+    }
   };
 
   const update = (next) => {
@@ -318,41 +333,27 @@ function setupStudioGallery() {
     slides.forEach((slide, index) => {
       slide.classList.remove('is-active', 'is-prev', 'is-next');
       const video = slide.querySelector('video');
+      if (!video) return;
 
       if (index === active) {
         slide.classList.add('is-active');
-        if (video) {
-          video.currentTime = 0;
-          if (!isSoundMuted) {
-            fadeInVideoAudio(video, 0.75, 1.2);
-          } else {
-            video.muted = true;
-          }
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              video.muted = true;
-              video.play().catch(() => {});
-            });
-          }
+        if (!isSoundMuted) {
+          playWithVolumeRamp(video, 0.75, 1.0);
+        } else {
+          video.muted = true;
+          video.play().catch(() => {});
         }
       } else if (index === (active - 1 + slides.length) % slides.length) {
         slide.classList.add('is-prev');
-        if (video) {
-          video.pause();
-          video.muted = true;
-        }
+        video.pause();
+        video.muted = true;
       } else if (index === (active + 1) % slides.length) {
         slide.classList.add('is-next');
-        if (video) {
-          video.pause();
-          video.muted = true;
-        }
+        video.pause();
+        video.muted = true;
       } else {
-        if (video) {
-          video.pause();
-          video.muted = true;
-        }
+        video.pause();
+        video.muted = true;
       }
     });
 
@@ -365,19 +366,19 @@ function setupStudioGallery() {
   soundBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      isSoundMuted = !isSoundMuted;
-      updateSoundUI();
       const activeVideo = slides[active]?.querySelector('video');
-      if (activeVideo) {
-        if (isSoundMuted) {
-          gsap.to(activeVideo, {
-            volume: 0,
-            duration: 0.35,
-            onComplete: () => { activeVideo.muted = true; }
-          });
-        } else {
-          fadeInVideoAudio(activeVideo, 0.75, 1.2);
-        }
+      if (!activeVideo) return;
+
+      if (isSoundMuted) {
+        playWithVolumeRamp(activeVideo, 0.75, 0.8);
+      } else {
+        isSoundMuted = true;
+        updateSoundUI();
+        gsap.to(activeVideo, {
+          volume: 0,
+          duration: 0.3,
+          onComplete: () => { activeVideo.muted = true; }
+        });
       }
     });
   });
@@ -387,19 +388,19 @@ function setupStudioGallery() {
     slide.addEventListener('click', (e) => {
       if (e.target.closest('.slide-sound-btn')) return;
       if (index === active) {
-        isSoundMuted = !isSoundMuted;
-        updateSoundUI();
         const video = slide.querySelector('video');
-        if (video) {
-          if (isSoundMuted) {
-            gsap.to(video, {
-              volume: 0,
-              duration: 0.35,
-              onComplete: () => { video.muted = true; }
-            });
-          } else {
-            fadeInVideoAudio(video, 0.75, 1.2);
-          }
+        if (!video) return;
+
+        if (isSoundMuted) {
+          playWithVolumeRamp(video, 0.75, 0.8);
+        } else {
+          isSoundMuted = true;
+          updateSoundUI();
+          gsap.to(video, {
+            volume: 0,
+            duration: 0.3,
+            onComplete: () => { video.muted = true; }
+          });
         }
       } else {
         update(index);
@@ -407,52 +408,29 @@ function setupStudioGallery() {
     });
   });
 
-  // Smooth entrance audio with progressive 1s volume ramp
-  let audioFadedIn = false;
-  const triggerSmoothAudioEntrance = () => {
-    if (audioFadedIn) return;
+  // First user interaction anywhere activates audio with 1s smooth ramp
+  let hasActivatedAudio = false;
+  const onFirstActivation = () => {
+    if (hasActivatedAudio) return;
+    hasActivatedAudio = true;
     const activeVideo = slides[active]?.querySelector('video');
-    if (activeVideo) {
-      audioFadedIn = true;
-      isSoundMuted = false;
-      updateSoundUI();
-      fadeInVideoAudio(activeVideo, 0.75, 1.0);
+    if (activeVideo && isSoundMuted) {
+      playWithVolumeRamp(activeVideo, 0.75, 1.0);
     }
   };
 
-  // Attempt unmuted audio right away on load
+  // Only listen to authentic user activation events (no mousemove/scroll to avoid browser pauses)
+  ['pointerdown', 'mousedown', 'touchstart', 'click', 'keydown'].forEach((evt) => {
+    window.addEventListener(evt, onFirstActivation, { once: true, passive: true });
+    document.addEventListener(evt, onFirstActivation, { once: true, passive: true });
+  });
+
+  // Start active video playing immediately
   const firstVideo = slides[0]?.querySelector('video');
   if (firstVideo) {
-    firstVideo.volume = 0.05;
-    firstVideo.muted = false;
-    const initialPlay = firstVideo.play();
-    if (initialPlay !== undefined) {
-      initialPlay.then(() => {
-        audioFadedIn = true;
-        isSoundMuted = false;
-        updateSoundUI();
-        gsap.to(firstVideo, { volume: 0.75, duration: 1.0, ease: 'power1.out' });
-      }).catch(() => {
-        // Autoplay policy: play muted immediately so it buffers and plays
-        firstVideo.muted = true;
-        firstVideo.play().catch(() => {});
-      });
-    }
+    firstVideo.muted = true;
+    firstVideo.play().catch(() => {});
   }
-
-  // On any immediate gesture (first mouse movement, click, scroll, touch), unlock and ramp in 1s
-  const onImmediateGesture = () => {
-    triggerSmoothAudioEntrance();
-    ['pointerdown', 'mousedown', 'touchstart', 'pointermove', 'mousemove', 'wheel', 'scroll', 'keydown'].forEach((evt) => {
-      window.removeEventListener(evt, onImmediateGesture);
-      document.removeEventListener(evt, onImmediateGesture);
-    });
-  };
-
-  ['pointerdown', 'mousedown', 'touchstart', 'pointermove', 'mousemove', 'wheel', 'scroll', 'keydown'].forEach((evt) => {
-    window.addEventListener(evt, onImmediateGesture, { passive: true });
-    document.addEventListener(evt, onImmediateGesture, { passive: true });
-  });
 
   gallery.querySelector('.gallery-prev')?.addEventListener('click', () => update(active - 1));
   gallery.querySelector('.gallery-next')?.addEventListener('click', () => update(active + 1));
