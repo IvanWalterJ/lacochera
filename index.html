@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="La Cochera Car Spa — Luxury Detailing, Paint Correction, Ceramic Coating & PPF en Mall Sport, Santiago de Chile.">
+  <title>La Cochera — Car Spa & Detailing Atelier</title>
+  <link rel="icon" type="image/png" href="/media/logo_grande_gris.png">
+  
+  <!-- Clash Display (Fontshare) & Inter (Google Fonts) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- =========================================================================
+       FLOATING NAVIGATION BAR (Framer Detailed Style)
+       ========================================================================= -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a class="nav-brand" href="#hero" aria-label="La Cochera Inicio">
+        <img src="/media/logo_grande_gris.png" alt="La Cochera Logo" class="nav-brand-logo">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link">Inicio</a>
+        <a href="#wipe-section" class="nav-link">Experiencia</a>
+        <a href="#showcase-cars" class="nav-link">Tratamientos</a>
+        <a href="#galeria-videos" class="nav-link">En Vivo</a>
+        <a href="#servicios" class="nav-link">Catálogo</a>
+        <a href="#equipo" class="nav-link">Equipo</a>
+        <a href="#ubicacion" class="nav-link">Ubicación</a>
+      </nav>
+
+      <div class="nav-right">
+        <a class="btn-pill-white framer-btn-link" href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer">
+          <span>Agendar Cita</span>
+          <span class="arrow-icon">→</span>
+        </a>
+        <button class="menu-burger" id="menu-burger" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- =========================================================================
+         1. HERO SECTION: Clean 2-Line Headline & Subtle Slow Entrance
+         ========================================================================= -->
+    <section class="hero-top" id="hero">
+      <div class="hero-top-shell">
+        <div class="tag-badge-mono">
+          <span class="badge-point"></span>
+          <span>ESTUDIO DE ESTÉTICA AUTOMOTRIZ · MALL SPORT, SANTIAGO</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          <span class="title-line">EL CUIDADO DE TU AUTO</span>
+          <span class="title-line text-outline">LLEVADO AL EXTREMO.</span>
+        </h1>
+
+        <p class="hero-lead-text">
+          Limpieza artesanal sin contacto, corrección óptica de pintura con medición digital de micras y blindaje cerámico 9H. El estándar de estudio para quienes valoran cada detalle.
+        </p>
+
+        <div class="hero-cta-group">
+          <a class="btn-pill-white framer-btn-link" href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer">
+            <span>Agendar Cita en Línea</span>
+            <span class="arrow-icon">→</span>
+          </a>
+          <a class="framer-btn-link hero-secondary-link" href="https://wa.me/56998724804?text=Hola%20Simón,%20quiero%20hacerte%20una%20consulta%20técnica%20sobre%20mi%20auto" target="_blank" rel="noopener noreferrer">
+            <span>Conversar con Simón</span>
+            <span class="arrow-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. HERO INTERACTIVE DIRT WIPE / SCRATCH REVEAL (Key-Palette Template)
+         Fixed 2752/1536 aspect ratio across desktop and mobile, pixel-perfect alignment
+         ========================================================================= -->
+    <section class="wipe-hero-section" id="wipe-section">
+      <div class="wipe-wrapper">
+        <div class="wipe-header-bar">
+          <div class="wipe-hint-pill">
+            <span class="sparkle-glyph">✦</span>
+            <span>Deslizá el cursor sobre el vehículo para remover la suciedad y revelar el acabado de estudio</span>
+          </div>
+          <button class="btn-reset-dirt framer-btn-link" id="btn-reset-dirt" type="button">
+            <span>Restablecer capa ↺</span>
+          </button>
+        </div>
+
+        <div class="wipe-canvas-container" id="wipe-container">
+          <!-- Clean car underneath -->
+          <img src="/media/hero-clean.jpg" alt="Auto impecable tras corrección óptica y sellado cerámico" class="clean-car-img" id="clean-car-img">
+          
+          <!-- Dirty car overlay on interactive canvas -->
+          <canvas id="wipe-canvas" class="wipe-canvas"></canvas>
+
+          <div class="wipe-status-labels">
+            <span class="status-tag tag-left">ESTADO: INGRESO SUCIO / SWIRLS</span>
+            <span class="status-tag tag-right">ACABADO: BLINDAJE CERÁMICO 9H</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. INFINITE CLIENT MARQUEE (16 Real Partner Brands from cochera.cl)
+         ========================================================================= -->
+    <section class="clients-marquee-section" aria-label="Clientes y Marcas que confían en La Cochera">
+      <div class="marquee-title-wrap">
+        <span class="mini-label">CLIENTES & CLUBES</span>
+        <p class="marquee-sub-title">Marcas, concesionarios y clubes automotrices que confían en nuestro taller</p>
+      </div>
+
+      <div class="clients-marquee-track">
+        <!-- Loop 1 -->
+        <div class="clients-logo-group">
+          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="Porsche Club Andino" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="BMW M Drivers Club" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="BMW" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="GranTurismo" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="Cars & Coffee Chile" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="Inchcape" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="911 Cars" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="Vanguard Motors" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="DN Automóviles" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="Piamonte" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="Persia Motorsport" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="Chevrolet Corvette" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="Remates Macal" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="Viconsa" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="A Motor" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="Autocred" loading="lazy"></div>
+        </div>
+        <!-- Loop 2 (Seamless Duplicate) -->
+        <div class="clients-logo-group" aria-hidden="true">
+          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. SCROLL-DRIVEN CAR & FEATURE STAGES
+         Distinct supercars (Porsche, Ferrari, Mercedes-AMG, McLaren)
+         Strong entrance shadows, enhanced vertical glide, tighter row spacing.
+         ========================================================================= -->
+    <section class="scroll-showcase-section" id="showcase-cars">
+      <div class="section-title-mono">
+        <span class="mini-label">01 / PROCESO POR ETAPAS</span>
+        <h2 class="h2-display">
+          <span class="title-line">CÓMO TRANSFORMAMOS</span>
+          <span class="title-line">TU VEHÍCULO.</span>
+        </h2>
+        <p class="section-subtitle">
+          Cada vehículo sigue un riguroso protocolo de cuatro etapas secuenciales diseñadas para restaurar y blindar su valor estético.
+        </p>
+      </div>
+
+      <div class="showcase-stages-list">
+        <!-- Stage 1: Porsche 911 GT3 RS -->
+        <div class="stage-row" data-stage="1">
+          <div class="stage-car-wrap">
+            <img src="/media/car-porsche-top.jpg" alt="Porsche 911 GT3 RS en proceso de descontaminación" class="car-cutout-img">
+          </div>
+          <div class="stage-content">
+            <span class="stage-num">01 / CUIDADO ESENCIAL</span>
+            <h3 class="stage-title">Descontaminación Férrea & Lavado Seguro</h3>
+            <p class="stage-desc">
+              Antes de intervenir, eliminamos todas las partículas minerales, brea y polvo férreo de frenos mediante químicos de pH neutro y barra de arcilla (Clay Bar). Evitamos cualquier arrastre mecánico que marque el barniz.
+            </p>
+            <ul class="stage-specs-list">
+              <li>Espuma activa de pH neutro que disuelve suciedad sin fricción</li>
+              <li>Lavado artesanal de 2 baldes con esponjas de microfibra premium</li>
+              <li>Limpieza en profundidad de pasarruedas, llantas y gargantas</li>
+              <li>Secado con turbina de aire caliente filtrado sin frotar</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stage 2: Ferrari SF90 Stradale -->
+        <div class="stage-row reverse" data-stage="2">
+          <div class="stage-car-wrap">
+            <img src="/media/car-ferrari-top.jpg" alt="Ferrari SF90 Stradale en corrección óptica" class="car-cutout-img">
+          </div>
+          <div class="stage-content">
+            <span class="stage-num">02 / RESTAURACIÓN</span>
+            <h3 class="stage-title">Corrección Óptica Multi-Etapa</h3>
+            <p class="stage-desc">
+              Medimos el espesor de la laca con micrómetro digital para trabajar con absoluta seguridad. Luego eliminamos micro-rayas, marcas de lavado y hologramas mediante compuestos abrasivos decrecientes.
+            </p>
+            <ul class="stage-specs-list">
+              <li>Inspección bajo reflectores Scangrip CRI 95+ de amplio espectro</li>
+              <li>Pulido rotativo y roto-orbital de máxima precisión</li>
+              <li>Corte nanométrico conservativo que respeta el espesor de fábrica</li>
+              <li>Recupera la nitidez, profundidad y perla metálica original</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stage 3: Mercedes-AMG GT Coupe -->
+        <div class="stage-row" data-stage="3">
+          <div class="stage-car-wrap">
+            <img src="/media/car-mercedes-top.jpg" alt="Mercedes-AMG GT Coupe con blindaje cerámico 9H" class="car-cutout-img">
+          </div>
+          <div class="stage-content">
+            <span class="stage-num">03 / PROTECCIÓN AVANZADA</span>
+            <h3 class="stage-title">Blindaje Cerámico 9H (Ceramic Coating)</h3>
+            <p class="stage-desc">
+              Una armadura nanotecnológica de sílice (SiO2) que cristaliza sobre la laca creando una barrera vítrea impenetrable contra el excremento de aves, radiación solar y químicos agresivos.
+            </p>
+            <ul class="stage-specs-list">
+              <li>Efecto hidrofóbico extremo que repele agua, lluvia ácida y suciedad</li>
+              <li>Protección UV activa que previene la decoloración y oxidación</li>
+              <li>Facilita el lavado futuro sin necesidad de refregar</li>
+              <li>Curado térmico con lámparas infrarrojas de onda corta</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stage 4: McLaren 720S -->
+        <div class="stage-row reverse" data-stage="4">
+          <div class="stage-car-wrap">
+            <img src="/media/car-mclaren-top.jpg" alt="McLaren 720S protegido con PPF Paint Protection Film" class="car-cutout-img">
+          </div>
+          <div class="stage-content">
+            <span class="stage-num">04 / PRESERVACIÓN TOTAL</span>
+            <h3 class="stage-title">PPF (Paint Protection Film)</h3>
+            <p class="stage-desc">
+              Película de poliuretano termoplástico transparente de alto micraje. Protege físicamente la carrocería frente a impactos de piedras en autopista, gravilla y roces con autorregeneración por calor.
+            </p>
+            <ul class="stage-specs-list">
+              <li>Corte milimétrico computarizado por plotter para cada modelo</li>
+              <li>Propiedad auto-regenerativa: rayones leves desaparecen con calor</li>
+              <li>Opciones en acabado transparente brillante o satinado mate (Stealth)</li>
+              <li>Garantía contra amarilleo, cuarteaduras o levantamiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. INTERACTIVE VIDEO GALLERY (Vertical Instagram Format, Pure Video Cards)
+         With audio activation, volume toggle, and lighter natural overlay.
+         ========================================================================= -->
+    <section class="gallery-section" id="galeria-videos">
+      <div class="section-title-mono">
+        <span class="mini-label">02 / REGISTROS EN VIDEO</span>
+        <h2 class="h2-display">
+          <span class="title-line">EL ESTÁNDAR DE ESTUDIO</span>
+          <span class="title-line">EN ACCIÓN REAL.</span>
+        </h2>
+        <p class="section-subtitle">
+          Registros directos desde nuestro taller en Mall Sport: corrección de pintura, instalación artesanal de PPF y entregas con acabado espejo.
+        </p>
+      </div>
+
+      <div class="studio-gallery" data-gallery>
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Video anterior">&#8249;</button>
+        
+        <div class="gallery-stage" aria-live="polite">
+          <!-- Slide 01 -->
+          <article class="gallery-slide is-active" data-slide-index="0">
+            <video src="/media/instagram-reel-1.mp4" poster="/media/instagram-thumb-1.jpg" playsinline loop></video>
+            <span class="slide-badge">01</span>
+            <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
+              <span class="sound-icon">🔊</span>
+            </button>
+          </article>
+
+          <!-- Slide 02 -->
+          <article class="gallery-slide is-next" data-slide-index="1">
+            <video src="/media/instagram-reel-2.mp4" poster="/media/instagram-thumb-2.jpg" playsinline loop></video>
+            <span class="slide-badge">02</span>
+            <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
+              <span class="sound-icon">🔊</span>
+            </button>
+          </article>
+
+          <!-- Slide 03 -->
+          <article class="gallery-slide" data-slide-index="2">
+            <video src="/media/instagram-reel-3.mp4" poster="/media/instagram-thumb-3.jpg" playsinline loop></video>
+            <span class="slide-badge">03</span>
+            <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
+              <span class="sound-icon">🔊</span>
+            </button>
+          </article>
+
+          <!-- Slide 04 -->
+          <article class="gallery-slide is-prev" data-slide-index="3">
+            <video src="/media/instagram-reel-4.mp4" poster="/media/instagram-thumb-4.jpg" playsinline loop></video>
+            <span class="slide-badge">04</span>
+            <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
+              <span class="sound-icon">🔊</span>
+            </button>
+          </article>
+        </div>
+
+        <button class="gallery-arrow gallery-next" type="button" aria-label="Video siguiente">&#8250;</button>
+
+        <!-- Progress Indicator -->
+        <div class="gallery-progress" aria-hidden="true">
+          <strong data-gallery-current>01</strong>
+          <span><i data-gallery-bar></i></span>
+          <strong>04</strong>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div class="gallery-thumbs" aria-label="Seleccionar video">
+          <button class="is-active" type="button" data-gallery-target="0">
+            <img src="/media/instagram-thumb-1.jpg" alt="Video 1">
+            <span>01</span>
+          </button>
+          <button type="button" data-gallery-target="1">
+            <img src="/media/instagram-thumb-2.jpg" alt="Video 2">
+            <span>02</span>
+          </button>
+          <button type="button" data-gallery-target="2">
+            <img src="/media/instagram-thumb-3.jpg" alt="Video 3">
+            <span>03</span>
+          </button>
+          <button type="button" data-gallery-target="3">
+            <img src="/media/instagram-thumb-4.jpg" alt="Video 4">
+            <span>04</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. DETAILED SERVICES & PRICING INQUIRIES
+         ========================================================================= -->
+    <section class="services-catalogue-section" id="servicios">
+      <div class="section-title-mono">
+        <span class="mini-label">03 / CATÁLOGO COMPLETO</span>
+        <h2 class="h2-display">
+          <span class="title-line">SERVICIOS DE ATELIER</span>
+          <span class="title-line">DISEÑADOS PARA PERDURAR.</span>
+        </h2>
+        <p class="section-subtitle">
+          Seleccioná un tratamiento para revisar el procedimiento técnico y cotizar con disponibilidad inmediata en Mall Sport.
+        </p>
+      </div>
+
+      <div class="category-filter-pills">
+        <button class="pill-btn active" data-cat="all">Todos los Servicios</button>
+        <button class="pill-btn" data-cat="cuidado">Cuidado & Limpieza</button>
+        <button class="pill-btn" data-cat="proteccion">Protección Cerámica & PPF</button>
+        <button class="pill-btn" data-cat="restauracion">Restauración & Pulido</button>
+      </div>
+
+      <div class="services-bento-grid" id="services-grid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. EL EQUIPO (Simón, Jaime, Javiera)
+         Vertical 3:4 cards preserving full faces and heads
+         ========================================================================= -->
+    <section class="team-section" id="equipo">
+      <div class="section-title-mono">
+        <span class="mini-label">04 / TALENTO & PROFESIONALISMO</span>
+        <h2 class="h2-display">
+          <span class="title-line">NUESTRO EQUIPO</span>
+          <span class="title-line">EN EL ATELIER.</span>
+        </h2>
+        <p class="section-subtitle">
+          Especialistas certificados con formación técnica y años dedicados al cuidado y gestión de vehículos de alta gama en Mall Sport.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-photo-wrap">
+            <img src="/media/team-simon.jpg" alt="Simón Aravena — CEO" class="team-img" loading="lazy">
+            <span class="team-badge">CEO</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">SIMON ARAVENA</h3>
+            <span class="team-role">CEO</span>
+            <p class="team-bio">
+              Fundador y líder de La Cochera. Conduce la visión estratégica del atelier en Mall Sport, cuidando que cada tratamiento alcance la máxima perfección estética.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo-wrap">
+            <img src="/media/team-jaime.jpg" alt="Jaime Aravena — Subgerente de Admin y Finanzas" class="team-img" loading="lazy">
+            <span class="team-badge">ADMIN & FINANZAS</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">JAIME ARAVENA</h3>
+            <span class="team-role">Subgerente de Admin y Finanzas</span>
+            <p class="team-bio">
+              A cargo de la gestión administrativa, financiera y la eficiencia operativa de La Cochera, asegurando procesos claros, ágiles y un respaldo sólido.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-card">
+          <div class="team-photo-wrap">
+            <img src="/media/team-javiera.jpg" alt="Javiera Schmidt — Encargada Calidad y Customer Experience" class="team-img" loading="lazy">
+            <span class="team-badge">CALIDAD & CX</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">JAVIERA SCHMIDT</h3>
+            <span class="team-role">Encargada Calidad y Customer Experience</span>
+            <p class="team-bio">
+              Garantiza la máxima satisfacción del cliente en cada etapa de atención, supervisando la calidad del servicio y brindando una experiencia cercana y personalizada.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. CLIENT TESTIMONIALS (Verified Reviews from cochera.cl)
+         ========================================================================= -->
+    <section class="reviews-section" id="testimonios">
+      <div class="section-title-mono">
+        <span class="mini-label">05 / OPINIONES VERIFICADAS</span>
+        <h2 class="h2-display">
+          <span class="title-line">RESEÑAS DE</span>
+          <span class="title-line">NUESTROS CLIENTES.</span>
+        </h2>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Les llevé mi auto y la verdad cuando me lo entregaron era irreconocible, 'de paquete'. Una lindura, quedó como nuevo, lo recomiendo a ojos cerrados.»</p>
+          <div class="review-author">
+            <strong>Sofía Muñoz</strong>
+            <span>Cliente Particular</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Profesionales del detailing y servicios automotrices en general. Lo mejor del mercado en Santiago por calidad de atención y rigor técnico.»</p>
+          <div class="review-author">
+            <strong>Felipe Gómez</strong>
+            <span>Cliente Habitual</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Excelente servicio. Profesionales y confiables. Especialistas reales del rubro. Mi BMW lo dejaron absolutamente impecable.»</p>
+          <div class="review-author">
+            <strong>Alan Worstman</strong>
+            <span>Dueño BMW</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. UBICACIÓN & GOOGLE MAPS INTEGRADO
+         ========================================================================= -->
+    <section class="location-section" id="ubicacion">
+      <div class="section-title-mono">
+        <span class="mini-label">06 / VISÍTANOS</span>
+        <h2 class="h2-display">
+          <span class="title-line">UBICACIÓN Y ACCESO</span>
+          <span class="title-line">SUBTERRÁNEO -1 MALL SPORT.</span>
+        </h2>
+        <p class="section-subtitle">
+          Bahías de trabajo diseñadas para resguardar la privacidad de cada auto y garantizar máxima seguridad vehicular.
+        </p>
+      </div>
+
+      <div class="location-bento-grid">
+        <div class="location-info-card">
+          <div>
+            <span class="mini-label">ATELIER SANTIAGO</span>
+            <h3>En el epicentro del automovilismo deportivo</h3>
+            
+            <div class="location-items-list">
+              <div class="loc-item">
+                <span class="loc-icon" aria-hidden="true">
+                  <svg class="loc-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </span>
+                <div class="loc-copy">
+                  <strong>Dirección de Taller</strong>
+                  <p>Mall Sport, Nivel Subterráneo -1<br>Av. Las Condes 13451, Las Condes, Santiago</p>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <span class="loc-icon" aria-hidden="true">
+                  <svg class="loc-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 11 2 11.5 2 12v4c0 .6.4 1 1 1h2"/>
+                    <circle cx="7" cy="17" r="2"/>
+                    <path d="M9 17h6"/>
+                    <circle cx="17" cy="17" r="2"/>
+                  </svg>
+                </span>
+                <div class="loc-copy">
+                  <strong>Acceso Vehicular</strong>
+                  <p>Ingreso por rampa directa al nivel -1. Bahías cerradas frente al sector de servicios.</p>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <span class="loc-icon" aria-hidden="true">
+                  <svg class="loc-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </span>
+                <div class="loc-copy">
+                  <strong>Horario de Operación</strong>
+                  <p>Lunes a Sábado: 09:30 a 19:30 hrs<br>Domingo: Con reserva previa</p>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <span class="loc-icon" aria-hidden="true">
+                  <svg class="loc-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <div class="loc-copy">
+                  <strong>Contacto Inmediato</strong>
+                  <p>(+56) 9 9872 4804 · contacto@cochera.cl</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="loc-actions">
+            <a class="btn-pill-white framer-btn-link" href="https://maps.google.com/?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile" target="_blank" rel="noopener noreferrer">
+              <span>Abrir en Google Maps</span>
+              <span class="arrow-icon">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="location-map-card">
+          <iframe 
+            title="Mapa de Ubicación La Cochera en Mall Sport" 
+            src="https://maps.google.com/maps?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            class="map-iframe" 
+            loading="lazy" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. CONTACT & DIRECT BOOKING
+         ========================================================================= -->
+    <section class="direct-contact-section" id="contacto">
+      <div class="contact-card-mono">
+        <span class="mini-label">07 / CONTACTO DIRECTO</span>
+        <h2 class="h2-display">
+          <span class="title-line">HABLEMOS DE TU AUTO</span>
+          <span class="title-line">Y AGENDA TU VISITA.</span>
+        </h2>
+        <p class="contact-copy">
+          Coordiná una evaluación presencial sin costo en nuestro taller o comunicate directamente con Simón por WhatsApp para una asesoría a la medida.
+        </p>
+
+        <div class="contact-actions-row">
+          <a class="btn-pill-white-large framer-btn-link" href="https://wa.me/56998724804?text=Hola%20Simón,%20quiero%20agendar%20una%20revisión%20técnica%20para%20mi%20auto%20en%20La%20Cochera%20Mall%20Sport" target="_blank" rel="noopener noreferrer">
+            <span>Conversar con Simón por WhatsApp</span>
+            <span class="arrow-icon">→</span>
+          </a>
+          <a class="btn-pill-trans framer-btn-link" href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer">
+            <span>Agendar Cita en Línea</span>
+            <span class="arrow-icon">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer-mono">
+    <div class="footer-shell">
+      <div class="footer-left">
+        <div class="footer-crest-row">
+          <img src="/media/logo_grande_gris.png" alt="La Cochera" class="footer-brand-logo">
+        </div>
+        <p class="footer-motto">Car Spa & Detailing Atelier · Mall Sport Subterráneo -1, Santiago de Chile.</p>
+        <p class="footer-phone">WhatsApp Directo: <a href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer">(+56) 9 9872 4804</a></p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-links-col">
+          <span class="f-col-h">Navegación</span>
+          <a href="#hero" class="framer-btn-link"><span>Inicio</span><span class="arrow-icon">→</span></a>
+          <a href="#wipe-section" class="framer-btn-link"><span>Experiencia Wipe</span><span class="arrow-icon">→</span></a>
+          <a href="#showcase-cars" class="framer-btn-link"><span>Etapas de Trabajo</span><span class="arrow-icon">→</span></a>
+          <a href="#galeria-videos" class="framer-btn-link"><span>Videos en Vivo</span><span class="arrow-icon">→</span></a>
+          <a href="#servicios" class="framer-btn-link"><span>Catálogo</span><span class="arrow-icon">→</span></a>
+          <a href="#equipo" class="framer-btn-link"><span>Equipo</span><span class="arrow-icon">→</span></a>
+          <a href="#ubicacion" class="framer-btn-link"><span>Ubicación</span><span class="arrow-icon">→</span></a>
+        </div>
+
+        <div class="footer-links-col">
+          <span class="f-col-h">Canales</span>
+          <a href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>Agendar Cita en Línea</span><span class="arrow-icon">→</span></a>
+          <a href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>WhatsApp Simón (+56 9 9872 4804)</span><span class="arrow-icon">→</span></a>
+          <a href="https://www.instagram.com/lacocheracarspa/" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>Instagram @lacocheracarspa</span><span class="arrow-icon">→</span></a>
+          <a href="mailto:contacto@cochera.cl" class="framer-btn-link"><span>contacto@cochera.cl</span><span class="arrow-icon">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-line">
+      <p>© <span id="year"></span> La Cochera Car Spa. Todos los derechos reservados.</p>
+      <p>Mall Sport Subterráneo -1 · Santiago, Chile.</p>
+    </div>
+  </footer>
+
+  <!-- Detail Dialog Modal for Services -->
+  <dialog id="service-modal" class="modal-mono" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal-mono-content">
+      <button class="modal-mono-close" id="modal-close" aria-label="Cerrar ventana">✕</button>
+      <span class="modal-mono-tag" id="modal-tag">CUIDADO</span>
+      <h2 class="modal-mono-title" id="modal-title">Tratamiento</h2>
+      <p class="modal-mono-desc" id="modal-desc"></p>
+
+      <div class="modal-mono-points-box">
+        <span class="box-title">PROCEDIMIENTO INCLUIDO:</span>
+        <ul class="points-ul" id="modal-points"></ul>
+      </div>
+
+      <div class="modal-mono-meta">
+        <div>
+          <span class="meta-h">DURACIÓN ESTIMADA</span>
+          <strong class="meta-v" id="modal-duration">1 a 2 Días</strong>
+        </div>
+        <div>
+          <span class="meta-h">UBICACIÓN</span>
+          <strong class="meta-v">Mall Sport Subterráneo -1</strong>
+        </div>
+      </div>
+
+      <div class="modal-mono-actions">
+        <a class="btn-pill-white framer-btn-link" id="modal-booking-btn" href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer">
+          <span>Agendar Cita en Línea</span>
+          <span class="arrow-icon">→</span>
+        </a>
+        <a class="framer-btn-link" id="modal-wa-btn" href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer">
+          <span>Consultar por WhatsApp</span>
+          <span class="arrow-icon">→</span>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vercel/
+output/
+*.log
+jaime3.jpg
+javiera.jpg
+simon.jpg
+logo_grande_gris.png
