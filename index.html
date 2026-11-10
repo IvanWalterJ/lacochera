@@ -8,12 +8,12 @@
   <title>La Cochera — Car Spa & Detailing Atelier</title>
   <link rel="icon" type="image/png" href="/media/logo_grande_gris.png">
   
-  <!-- Clash Display (Fontshare) & Inter (Google Fonts) -->
+  <!-- Clash Display (Fontshare), Lato & Inter (Google Fonts) -->
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
@@ -76,8 +76,8 @@
             <span>Agendar Cita en Línea</span>
             <span class="arrow-icon">→</span>
           </a>
-          <a class="framer-btn-link hero-secondary-link" href="https://wa.me/56998724804?text=Hola%20Simón,%20quiero%20hacerte%20una%20consulta%20técnica%20sobre%20mi%20auto" target="_blank" rel="noopener noreferrer">
-            <span>Conversar con Simón</span>
+          <a class="framer-btn-link hero-secondary-link" href="https://wa.me/56940566309?text=Hola,%20quiero%20hacer%20una%20consulta%20técnica%20sobre%20mi%20auto" target="_blank" rel="noopener noreferrer">
+            <span>Conversar con el equipo</span>
             <span class="arrow-icon">→</span>
           </a>
         </div>
@@ -480,25 +480,49 @@
     </section>
 
     <!-- =========================================================================
-         9. UBICACIÓN & GOOGLE MAPS INTEGRADO
+         9. UBICACIÓN & GOOGLE MAPS INTEGRADO (CON SELECTOR DE SEDES)
          ========================================================================= -->
     <section class="location-section" id="ubicacion">
       <div class="section-title-mono">
-        <span class="mini-label">06 / VISÍTANOS</span>
+        <span class="mini-label">06 / NUESTRAS SEDES</span>
         <h2 class="h2-display">
           <span class="title-line">UBICACIÓN Y ACCESO</span>
-          <span class="title-line">SUBTERRÁNEO -1 MALL SPORT.</span>
+          <span class="title-line">TALLERES & ATELIER A DOMICILIO.</span>
         </h2>
         <p class="section-subtitle">
-          Bahías de trabajo diseñadas para resguardar la privacidad de cada auto y garantizar máxima seguridad vehicular.
+          Sedes especializadas en Santiago y servicio premium a domicilio para el resguardo y cuidado de tu vehículo.
         </p>
+      </div>
+
+      <!-- SELECTOR DINÁMICO DE SEDES -->
+      <div class="location-tabs-container" role="tablist" aria-label="Sedes y ubicaciones de La Cochera">
+        <button class="loc-tab-btn active" data-loc="mallsport" role="tab" aria-selected="true">
+          <span class="tab-status-dot" aria-hidden="true"></span>
+          <span class="tab-title">Mall Sport</span>
+          <span class="tab-subtitle">Atelier Las Condes</span>
+        </button>
+        <button class="loc-tab-btn" data-loc="manquehue" role="tab" aria-selected="false">
+          <span class="tab-status-dot" aria-hidden="true"></span>
+          <span class="tab-title">Atelier Studio</span>
+          <span class="tab-subtitle">Av. Manquehue 882</span>
+        </button>
+        <button class="loc-tab-btn" data-loc="express" role="tab" aria-selected="false">
+          <span class="tab-status-dot" aria-hidden="true"></span>
+          <span class="tab-title">La Cochera Express</span>
+          <span class="tab-subtitle">La Reina</span>
+        </button>
+        <button class="loc-tab-btn" data-loc="domicilio" role="tab" aria-selected="false">
+          <span class="tab-status-dot" aria-hidden="true"></span>
+          <span class="tab-title">A Domicilio</span>
+          <span class="tab-subtitle">Servicio Premium</span>
+        </button>
       </div>
 
       <div class="location-bento-grid">
         <div class="location-info-card">
           <div>
-            <span class="mini-label">ATELIER SANTIAGO</span>
-            <h3>En el epicentro del automovilismo deportivo</h3>
+            <span class="mini-label loc-dynamic-badge">ATELIER MALL SPORT · LAS CONDES</span>
+            <h3 class="loc-dynamic-headline">En el epicentro del automovilismo deportivo</h3>
             
             <div class="location-items-list">
               <div class="loc-item">
@@ -509,8 +533,8 @@
                   </svg>
                 </span>
                 <div class="loc-copy">
-                  <strong>Dirección de Taller</strong>
-                  <p>Mall Sport, Nivel Subterráneo -1<br>Av. Las Condes 13451, Las Condes, Santiago</p>
+                  <strong class="loc-address-title">Dirección de Taller</strong>
+                  <p class="loc-address-text">Mall Sport, Nivel Subterráneo -1<br>Av. Las Condes 13451, Las Condes, Santiago</p>
                 </div>
               </div>
 
@@ -524,8 +548,8 @@
                   </svg>
                 </span>
                 <div class="loc-copy">
-                  <strong>Acceso Vehicular</strong>
-                  <p>Ingreso por rampa directa al nivel -1. Bahías cerradas frente al sector de servicios.</p>
+                  <strong class="loc-access-title">Acceso Vehicular</strong>
+                  <p class="loc-access-text">Ingreso por rampa directa al nivel -1. Bahías cerradas frente al sector de servicios.</p>
                 </div>
               </div>
 
@@ -537,8 +561,8 @@
                   </svg>
                 </span>
                 <div class="loc-copy">
-                  <strong>Horario de Operación</strong>
-                  <p>Lunes a Sábado: 09:30 a 19:30 hrs<br>Domingo: Con reserva previa</p>
+                  <strong class="loc-hours-title">Horario de Operación</strong>
+                  <p class="loc-hours-text">Lunes a Sábado: 09:30 a 19:30 hrs<br>Domingo: Con reserva previa</p>
                 </div>
               </div>
 
@@ -549,15 +573,15 @@
                   </svg>
                 </span>
                 <div class="loc-copy">
-                  <strong>Contacto Inmediato</strong>
-                  <p>(+56) 9 9872 4804 · contacto@cochera.cl</p>
+                  <strong class="loc-contact-title">Contacto Inmediato</strong>
+                  <p class="loc-contact-text">(+56) 9 4056 6309 · contacto@cochera.cl</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="loc-actions">
-            <a class="btn-pill-white framer-btn-link" href="https://maps.google.com/?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile" target="_blank" rel="noopener noreferrer">
+            <a class="btn-pill-white framer-btn-link loc-action-btn" href="https://maps.google.com/?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile" target="_blank" rel="noopener noreferrer">
               <span>Abrir en Google Maps</span>
               <span class="arrow-icon">→</span>
             </a>
@@ -566,12 +590,58 @@
 
         <div class="location-map-card">
           <iframe 
-            title="Mapa de Ubicación La Cochera en Mall Sport" 
+            title="Mapa de Ubicación La Cochera" 
             src="https://maps.google.com/maps?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             class="map-iframe" 
             loading="lazy" 
             allowfullscreen>
           </iframe>
+
+          <!-- TARJETA VISUAL PARA SERVICIO A DOMICILIO -->
+          <div class="domicilio-visual-card" style="display: none;">
+            <div class="domicilio-mesh-bg" aria-hidden="true"></div>
+            <div class="domicilio-content">
+              <div class="domicilio-badge-row">
+                <span class="mini-label">ATELIER MÓVIL · SANTIAGO</span>
+              </div>
+              <div class="domicilio-icon-wrap" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 11 2 11.5 2 12v4c0 .6.4 1 1 1h2"/>
+                  <circle cx="7" cy="17" r="2"/>
+                  <path d="M9 17h6"/>
+                  <circle cx="17" cy="17" r="2"/>
+                  <path d="M12 2v6"/>
+                  <path d="m9 5 3-3 3 3"/>
+                </svg>
+              </div>
+              <h4>Servicio Premium a Domicilio</h4>
+              <p class="domicilio-desc">
+                Sin desplazamientos ni traslados. Llevamos el equipamiento completo de nivel studio directo al garaje de tu residencia para tratamientos de corrección, sellado y detailing de alta gama.
+              </p>
+              <div class="domicilio-pills-grid">
+                <div class="domicilio-pill">
+                  <span class="check-icon">✓</span>
+                  <span>Sin mover tu auto</span>
+                </div>
+                <div class="domicilio-pill">
+                  <span class="check-icon">✓</span>
+                  <span>Equipamiento móvil propio</span>
+                </div>
+                <div class="domicilio-pill">
+                  <span class="check-icon">✓</span>
+                  <span>Total reserva y seguridad</span>
+                </div>
+                <div class="domicilio-pill">
+                  <span class="check-icon">✓</span>
+                  <span>Agenda personalizada</span>
+                </div>
+              </div>
+              <a class="btn-pill-white framer-btn-link domicilio-cta-btn" href="https://wa.me/56940566309?text=Hola,%20quiero%20coordinar%20el%20Servicio%20a%20Domicilio%20de%20La%20Cochera" target="_blank" rel="noopener noreferrer">
+                <span>Coordinar Servicio por WhatsApp</span>
+                <span class="arrow-icon">→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -587,12 +657,12 @@
           <span class="title-line">Y AGENDA TU VISITA.</span>
         </h2>
         <p class="contact-copy">
-          Coordiná una evaluación presencial sin costo en nuestro taller o comunicate directamente con Simón por WhatsApp para una asesoría a la medida.
+          Coordiná una evaluación presencial sin costo en nuestro taller o comunicate directamente con nuestro equipo por WhatsApp para una asesoría a la medida.
         </p>
 
         <div class="contact-actions-row">
-          <a class="btn-pill-white-large framer-btn-link" href="https://wa.me/56998724804?text=Hola%20Simón,%20quiero%20agendar%20una%20revisión%20técnica%20para%20mi%20auto%20en%20La%20Cochera%20Mall%20Sport" target="_blank" rel="noopener noreferrer">
-            <span>Conversar con Simón por WhatsApp</span>
+          <a class="btn-pill-white-large framer-btn-link" href="https://wa.me/56940566309?text=Hola,%20quiero%20agendar%20una%20revisión%20técnica%20para%20mi%20auto%20en%20La%20Cochera%20Mall%20Sport" target="_blank" rel="noopener noreferrer">
+            <span>Conversar con el equipo por WhatsApp</span>
             <span class="arrow-icon">→</span>
           </a>
           <a class="btn-pill-trans framer-btn-link" href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer">
@@ -614,7 +684,7 @@
           <img src="/media/logo_grande_gris.png" alt="La Cochera" class="footer-brand-logo">
         </div>
         <p class="footer-motto">Car Spa & Detailing Atelier · Mall Sport Subterráneo -1, Santiago de Chile.</p>
-        <p class="footer-phone">WhatsApp Directo: <a href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer">(+56) 9 9872 4804</a></p>
+        <p class="footer-phone">WhatsApp Directo: <a href="https://wa.me/56940566309" target="_blank" rel="noopener noreferrer">(+56) 9 4056 6309</a></p>
       </div>
 
       <div class="footer-right">
@@ -632,7 +702,7 @@
         <div class="footer-links-col">
           <span class="f-col-h">Canales</span>
           <a href="https://app.hotdetailingstudio.com/t/la-cochera" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>Agendar Cita en Línea</span><span class="arrow-icon">→</span></a>
-          <a href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>WhatsApp Simón (+56 9 9872 4804)</span><span class="arrow-icon">→</span></a>
+          <a href="https://wa.me/56940566309" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>WhatsApp La Cochera (+56 9 4056 6309)</span><span class="arrow-icon">→</span></a>
           <a href="https://www.instagram.com/lacocheracarspa/" target="_blank" rel="noopener noreferrer" class="framer-btn-link"><span>Instagram @lacocheracarspa</span><span class="arrow-icon">→</span></a>
           <a href="mailto:contacto@cochera.cl" class="framer-btn-link"><span>contacto@cochera.cl</span><span class="arrow-icon">→</span></a>
         </div>
@@ -674,9 +744,9 @@
           <span>Agendar Cita en Línea</span>
           <span class="arrow-icon">→</span>
         </a>
-        <a class="framer-btn-link" id="modal-wa-btn" href="https://wa.me/56998724804" target="_blank" rel="noopener noreferrer">
-          <span>Consultar por WhatsApp</span>
-          <span class="arrow-icon">→</span>
+        <a class="framer-btn-link" id="modal-wa-btn" href="https://wa.me/56940566309" target="_blank" rel="noopener noreferrer" style="color: #ffffff !important; display: inline-flex; align-items: center; gap: 8px;">
+          <span style="color: #ffffff !important;">Consultar por WhatsApp</span>
+          <span class="arrow-icon" style="color: #ffffff !important;">→</span>
         </a>
       </div>
     </div>

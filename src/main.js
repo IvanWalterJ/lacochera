@@ -151,7 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Scroll Reveals, Word Vanish & Floating Cars
   setupScrollAnimations();
 
-  // 7. Footer year
+  // 7. Location Switcher (Sedes & Servicio a Domicilio)
+  setupLocationSwitcher();
+
+  // 8. Footer year
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
@@ -542,8 +545,8 @@ function openServiceModal(service) {
   pointsEl.innerHTML = service.points.map((p) => `<li>${p}</li>`).join('');
 
   const waBtn = document.getElementById('modal-wa-btn');
-  const msg = `Hola Simón, quiero consultar disponibilidad y valor para el tratamiento "${service.title}" en La Cochera Mall Sport. Mi auto es: [Indicar modelo]`;
-  waBtn.href = `https://wa.me/56998724804?text=${encodeURIComponent(msg)}`;
+  const msg = `Hola, quiero consultar disponibilidad y valor para el tratamiento "${service.title}" en La Cochera Mall Sport. Mi auto es: [Indicar modelo]`;
+  waBtn.href = `https://wa.me/56940566309?text=${encodeURIComponent(msg)}`;
 
   modal.showModal();
 }
@@ -721,6 +724,153 @@ function setupScrollAnimations() {
         trigger: el,
         start: 'top 85%'
       }
+    });
+  });
+}
+
+/* ==========================================================================
+   LOCATION SWITCHER (SEDES & SERVICIO A DOMICILIO)
+   ========================================================================== */
+const locationsCatalog = {
+  mallsport: {
+    badge: 'ATELIER MALL SPORT · LAS CONDES',
+    headline: 'En el epicentro del automovilismo deportivo',
+    addressTitle: 'Dirección de Taller',
+    addressHtml: 'Mall Sport, Nivel Subterráneo -1<br>Av. Las Condes 13451, Las Condes, Santiago',
+    accessTitle: 'Acceso Vehicular',
+    accessHtml: 'Ingreso por rampa directa al nivel -1. Bahías cerradas frente al sector de servicios.',
+    hoursTitle: 'Horario de Operación',
+    hoursHtml: 'Lunes a Sábado: 09:30 a 19:30 hrs<br>Domingo: Con reserva previa',
+    contactTitle: 'Contacto Inmediato',
+    contactHtml: '(+56) 9 4056 6309 · contacto@cochera.cl',
+    btnText: 'Abrir en Google Maps',
+    btnUrl: 'https://maps.google.com/?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile',
+    isDomicilio: false,
+    mapSrc: 'https://maps.google.com/maps?q=Mall+Sport+Av+Las+Condes+13451+Las+Condes+Chile&t=&z=15&ie=UTF8&iwloc=&output=embed'
+  },
+  manquehue: {
+    badge: 'ATELIER STUDIO · LAS CONDES',
+    headline: 'Estudio de detallado integral y PPF',
+    addressTitle: 'Dirección de Taller',
+    addressHtml: 'Av. Manquehue Sur 882, Las Condes, Santiago',
+    accessTitle: 'Acceso Vehicular',
+    accessHtml: 'Bahías especializadas con iluminación técnica de corrección óptica y zona de protección.',
+    hoursTitle: 'Horario de Operación',
+    hoursHtml: 'Lunes a Sábado: 09:00 a 19:30 hrs<br>Domingo: Con reserva previa',
+    contactTitle: 'Contacto Inmediato',
+    contactHtml: '(+56) 9 4056 6309 · contacto@cochera.cl',
+    btnText: 'Abrir en Google Maps',
+    btnUrl: 'https://maps.google.com/?q=Av+Manquehue+Sur+882+Las+Condes+Santiago+Chile',
+    isDomicilio: false,
+    mapSrc: 'https://maps.google.com/maps?q=Av+Manquehue+Sur+882+Las+Condes+Santiago+Chile&t=&z=15&ie=UTF8&iwloc=&output=embed'
+  },
+  express: {
+    badge: 'SEDE EXPRESS · LA REINA',
+    headline: 'Mantenimiento express y lavado studio',
+    addressTitle: 'Dirección de Sede',
+    addressHtml: 'Av. Nueva Larraín 8320, La Reina, Santiago',
+    accessTitle: 'Acceso Vehicular',
+    accessHtml: 'Recepción directa sobre Av. Nueva Larraín con zona de estacionamiento y atención ágil.',
+    hoursTitle: 'Horario de Operación',
+    hoursHtml: 'Lunes a Sábado: 09:00 a 19:00 hrs',
+    contactTitle: 'Contacto Inmediato',
+    contactHtml: '(+56) 9 4056 6309 · contacto@cochera.cl',
+    btnText: 'Abrir en Google Maps',
+    btnUrl: 'https://maps.google.com/?q=Av+Nueva+Larrain+8320+La+Reina+Santiago+Chile',
+    isDomicilio: false,
+    mapSrc: 'https://maps.google.com/maps?q=Av+Nueva+Larrain+8320+La+Reina+Santiago+Chile&t=&z=15&ie=UTF8&iwloc=&output=embed'
+  },
+  domicilio: {
+    badge: 'SERVICIO EXCLUSIVO A DOMICILIO',
+    headline: 'El estándar de La Cochera directo en tu garaje',
+    addressTitle: 'Modalidad de Servicio',
+    addressHtml: 'Atención personalizada en tu residencia o lugar de resguardo',
+    accessTitle: 'Requerimientos Técnicos',
+    accessHtml: 'Llevamos todo el equipamiento y productos profesionales. Solo requerimos espacio techado y toma de energía eléctrica.',
+    hoursTitle: 'Horario y Coordinación',
+    hoursHtml: 'Lunes a Sábado: Agenda exclusiva con coordinación previa',
+    contactTitle: 'Contacto Inmediato',
+    contactHtml: '(+56) 9 4056 6309 · contacto@cochera.cl',
+    btnText: 'Coordinar Visita por WhatsApp',
+    btnUrl: 'https://wa.me/56940566309?text=Hola,%20quiero%20coordinar%20el%20Servicio%20a%20Domicilio%20de%20La%20Cochera',
+    isDomicilio: true,
+    mapSrc: ''
+  }
+};
+
+function setupLocationSwitcher() {
+  const tabs = document.querySelectorAll('.loc-tab-btn');
+  const infoCard = document.querySelector('.location-info-card');
+  const mapCard = document.querySelector('.location-map-card');
+  const mapIframe = document.querySelector('.map-iframe');
+  const domicilioCard = document.querySelector('.domicilio-visual-card');
+
+  if (!tabs.length || !infoCard) return;
+
+  const badgeEl = infoCard.querySelector('.loc-dynamic-badge');
+  const headlineEl = infoCard.querySelector('.loc-dynamic-headline');
+  const addressTitleEl = infoCard.querySelector('.loc-address-title');
+  const addressTextEl = infoCard.querySelector('.loc-address-text');
+  const accessTitleEl = infoCard.querySelector('.loc-access-title');
+  const accessTextEl = infoCard.querySelector('.loc-access-text');
+  const hoursTitleEl = infoCard.querySelector('.loc-hours-title');
+  const hoursTextEl = infoCard.querySelector('.loc-hours-text');
+  const contactTitleEl = infoCard.querySelector('.loc-contact-title');
+  const contactTextEl = infoCard.querySelector('.loc-contact-text');
+  const actionBtn = infoCard.querySelector('.loc-action-btn');
+  const actionBtnText = actionBtn?.querySelector('span:first-child');
+
+  function selectLocation(locKey) {
+    const data = locationsCatalog[locKey];
+    if (!data) return;
+
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.loc === locKey;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    infoCard.classList.add('updating');
+    if (mapCard) mapCard.classList.add('updating');
+
+    setTimeout(() => {
+      if (badgeEl) badgeEl.textContent = data.badge;
+      if (headlineEl) headlineEl.innerHTML = data.headline;
+      if (addressTitleEl) addressTitleEl.textContent = data.addressTitle;
+      if (addressTextEl) addressTextEl.innerHTML = data.addressHtml;
+      if (accessTitleEl) accessTitleEl.textContent = data.accessTitle;
+      if (accessTextEl) accessTextEl.innerHTML = data.accessHtml;
+      if (hoursTitleEl) hoursTitleEl.textContent = data.hoursTitle;
+      if (hoursTextEl) hoursTextEl.innerHTML = data.hoursHtml;
+      if (contactTitleEl) contactTitleEl.textContent = data.contactTitle;
+      if (contactTextEl) contactTextEl.innerHTML = data.contactHtml;
+
+      if (actionBtn && actionBtnText) {
+        actionBtn.href = data.btnUrl;
+        actionBtnText.textContent = data.btnText;
+      }
+
+      if (data.isDomicilio) {
+        if (mapIframe) mapIframe.style.display = 'none';
+        if (domicilioCard) domicilioCard.style.display = 'flex';
+      } else {
+        if (domicilioCard) domicilioCard.style.display = 'none';
+        if (mapIframe) {
+          mapIframe.style.display = 'block';
+          if (mapIframe.src !== data.mapSrc) {
+            mapIframe.src = data.mapSrc;
+          }
+        }
+      }
+
+      infoCard.classList.remove('updating');
+      if (mapCard) mapCard.classList.remove('updating');
+    }, 140);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      selectLocation(tab.dataset.loc);
     });
   });
 }
