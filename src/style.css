@@ -1917,13 +1917,16 @@ img, video, canvas {
 .dev-by-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
-  color: var(--gray-dim);
-  font-size: 11.5px;
+  color: var(--gray-muted);
+  font-size: 13px;
   letter-spacing: 0.02em;
-  padding: 4px 0;
-  transition: color 0.25s ease;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.25s ease;
 }
 
 .dev-by-text {
@@ -1932,23 +1935,26 @@ img, video, canvas {
 }
 
 .dev-by-logo {
-  height: 15px;
+  height: 23px;
   width: auto;
   object-fit: contain;
-  opacity: 0.5;
-  filter: brightness(0.95);
+  opacity: 0.88;
+  filter: brightness(1.1);
   transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
   vertical-align: middle;
 }
 
 .dev-by-badge:hover {
-  color: var(--white-dim);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  transform: translateY(-1px);
 }
 
 .dev-by-badge:hover .dev-by-logo {
-  opacity: 0.95;
-  filter: brightness(1.15);
-  transform: translateY(-1px);
+  opacity: 1;
+  filter: brightness(1.3);
+  transform: scale(1.03);
 }
 
 @media (max-width: 680px) {
