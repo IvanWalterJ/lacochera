@@ -170,7 +170,7 @@ function initInteractiveWipe() {
 
   const ctx = canvas.getContext('2d');
   let dirtyImage = new Image();
-  dirtyImage.src = '/media/hero-dirty.jpg';
+  dirtyImage.decoding = 'async';
 
   let isLoaded = false;
   let isPointerDown = false;
@@ -178,6 +178,7 @@ function initInteractiveWipe() {
 
   function resize() {
     const rect = container.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -196,6 +197,11 @@ function initInteractiveWipe() {
     isLoaded = true;
     resize();
   };
+  dirtyImage.src = '/media/hero-dirty.jpg';
+  if (dirtyImage.complete && dirtyImage.naturalWidth > 0) {
+    isLoaded = true;
+    resize();
+  }
 
   window.addEventListener('resize', resize);
 
@@ -411,10 +417,13 @@ function setupStudioGallery() {
     });
   });
 
-  // First user interaction anywhere activates audio with 1s smooth ramp
+  // First user interaction on or near gallery activates audio with 1s smooth ramp
   let hasActivatedAudio = false;
   const onFirstActivation = () => {
     if (hasActivatedAudio) return;
+    const rect = gallery.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!isVisible) return;
     hasActivatedAudio = true;
     const activeVideo = slides[active]?.querySelector('video');
     if (activeVideo && isSoundMuted) {
@@ -428,11 +437,33 @@ function setupStudioGallery() {
     document.addEventListener(evt, onFirstActivation, { once: true, passive: true });
   });
 
-  // Start active video playing immediately
-  const firstVideo = slides[0]?.querySelector('video');
-  if (firstVideo) {
-    firstVideo.muted = true;
-    firstVideo.play().catch(() => {});
+  // Lazy & viewport-aware video playback:
+  // Only play the active video when the gallery is in/near viewport; pause when scrolled off-screen
+  let isGalleryInView = false;
+  if ('IntersectionObserver' in window) {
+    const galleryObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isGalleryInView = entry.isIntersecting;
+          const currentVideo = slides[active]?.querySelector('video');
+          if (!currentVideo) return;
+          if (entry.isIntersecting) {
+            currentVideo.play().catch(() => {});
+          } else {
+            currentVideo.pause();
+          }
+        });
+      },
+      { rootMargin: '150px 0px', threshold: 0.15 }
+    );
+    galleryObserver.observe(gallery);
+  } else {
+    isGalleryInView = true;
+    const firstVideo = slides[0]?.querySelector('video');
+    if (firstVideo) {
+      firstVideo.muted = true;
+      firstVideo.play().catch(() => {});
+    }
   }
 
   gallery.querySelector('.gallery-prev')?.addEventListener('click', () => update(active - 1));

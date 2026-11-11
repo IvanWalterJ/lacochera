@@ -3,9 +3,9 @@ dist/
 .vercel/
 output/
 *.log
-jaime3.jpg
-javiera.jpg
-simon.jpg
-logo_grande_gris.png
+/jaime3.jpg
+/javiera.jpg
+/simon.jpg
+/logo_grande_gris.png
 
 .vercel

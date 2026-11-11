@@ -7,6 +7,8 @@
   <meta name="description" content="La Cochera Car Spa — Luxury Detailing, Paint Correction, Ceramic Coating & PPF en Mall Sport, Santiago de Chile.">
   <title>La Cochera — Car Spa & Detailing Atelier</title>
   <link rel="icon" type="image/png" href="/media/logo_grande_gris.png">
+  <link rel="preload" as="image" href="/media/logo_grande_gris.png">
+  <link rel="preload" as="image" href="/media/hero-clean.jpg" fetchpriority="high">
   
   <!-- Clash Display (Fontshare), Lato & Inter (Google Fonts) -->
   <link rel="preconnect" href="https://api.fontshare.com">
@@ -25,7 +27,7 @@
   <header class="header-nav">
     <div class="nav-container">
       <a class="nav-brand" href="#hero" aria-label="La Cochera Inicio">
-        <img src="/media/logo_grande_gris.png" alt="La Cochera Logo" class="nav-brand-logo">
+        <img src="/media/logo_grande_gris.png" alt="La Cochera Logo" class="nav-brand-logo" width="140" height="26" decoding="async" onerror="if(this.src.indexOf('logo-original.png')===-1)this.src='/media/logo-original.png';">
       </a>
 
       <nav class="nav-menu" id="nav-menu">
@@ -102,7 +104,7 @@
 
         <div class="wipe-canvas-container" id="wipe-container">
           <!-- Clean car underneath -->
-          <img src="/media/hero-clean.jpg" alt="Auto impecable tras corrección óptica y sellado cerámico" class="clean-car-img" id="clean-car-img">
+          <img src="/media/hero-clean.jpg" alt="Auto impecable tras corrección óptica y sellado cerámico" class="clean-car-img" id="clean-car-img" width="2752" height="1536" fetchpriority="high" decoding="async">
           
           <!-- Dirty car overlay on interactive canvas -->
           <canvas id="wipe-canvas" class="wipe-canvas"></canvas>
@@ -122,41 +124,41 @@
       <div class="clients-marquee-track">
         <!-- Loop 1 -->
         <div class="clients-logo-group">
-          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="Porsche Club Andino" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="BMW M Drivers Club" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="BMW" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="GranTurismo" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="Cars & Coffee Chile" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="Inchcape" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="911 Cars" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="Vanguard Motors" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="DN Automóviles" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="Piamonte" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="Persia Motorsport" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="Chevrolet Corvette" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="Remates Macal" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="Viconsa" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="A Motor" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="Autocred" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="Porsche Club Andino" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="BMW M Drivers Club" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="BMW" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="GranTurismo" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="Cars & Coffee Chile" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="Inchcape" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="911 Cars" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="Vanguard Motors" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="DN Automóviles" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="Piamonte" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="Persia Motorsport" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="Chevrolet Corvette" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="Remates Macal" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="Viconsa" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="A Motor" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="Autocred" loading="lazy" decoding="async"></div>
         </div>
         <!-- Loop 2 (Seamless Duplicate) -->
         <div class="clients-logo-group" aria-hidden="true">
-          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="" loading="lazy"></div>
-          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="" loading="lazy"></div>
+          <div class="client-logo-item"><img src="/media/clients/porsche-club-andino.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw-m-club.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/bmw.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/granturismo.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/cars-and-coffee.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/inchcape.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/911-cars.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/vanguard-motors.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/dn-automoviles.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/piamonte.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/persia-motorsport.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/chevrolet-corvette.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/remates-macal.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/viconsa.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/a-motor.png" alt="" loading="lazy" decoding="async"></div>
+          <div class="client-logo-item"><img src="/media/clients/autocred.png" alt="" loading="lazy" decoding="async"></div>
         </div>
       </div>
     </section>
@@ -182,7 +184,7 @@
         <!-- Stage 1: Porsche 911 GT3 RS -->
         <div class="stage-row" data-stage="1">
           <div class="stage-car-wrap">
-            <img src="/media/car-porsche-top.jpg" alt="Porsche 911 GT3 RS en proceso de descontaminación" class="car-cutout-img">
+            <img src="/media/car-porsche-top.jpg" alt="Porsche 911 GT3 RS en proceso de descontaminación" class="car-cutout-img" loading="lazy" decoding="async" width="768" height="1376">
           </div>
           <div class="stage-content">
             <span class="stage-num">01 / CUIDADO ESENCIAL</span>
@@ -202,7 +204,7 @@
         <!-- Stage 2: Ferrari SF90 Stradale -->
         <div class="stage-row reverse" data-stage="2">
           <div class="stage-car-wrap">
-            <img src="/media/car-ferrari-top.jpg" alt="Ferrari SF90 Stradale en corrección óptica" class="car-cutout-img">
+            <img src="/media/car-ferrari-top.jpg" alt="Ferrari SF90 Stradale en corrección óptica" class="car-cutout-img" loading="lazy" decoding="async" width="768" height="1376">
           </div>
           <div class="stage-content">
             <span class="stage-num">02 / RESTAURACIÓN</span>
@@ -222,7 +224,7 @@
         <!-- Stage 3: Mercedes-AMG GT Coupe -->
         <div class="stage-row" data-stage="3">
           <div class="stage-car-wrap">
-            <img src="/media/car-mercedes-top.jpg" alt="Mercedes-AMG GT Coupe con blindaje cerámico 9H" class="car-cutout-img">
+            <img src="/media/car-mercedes-top.jpg" alt="Mercedes-AMG GT Coupe con blindaje cerámico 9H" class="car-cutout-img" loading="lazy" decoding="async" width="768" height="1376">
           </div>
           <div class="stage-content">
             <span class="stage-num">03 / PROTECCIÓN AVANZADA</span>
@@ -242,7 +244,7 @@
         <!-- Stage 4: McLaren 720S -->
         <div class="stage-row reverse" data-stage="4">
           <div class="stage-car-wrap">
-            <img src="/media/car-mclaren-top.jpg" alt="McLaren 720S protegido con PPF Paint Protection Film" class="car-cutout-img">
+            <img src="/media/car-mclaren-top.jpg" alt="McLaren 720S protegido con PPF Paint Protection Film" class="car-cutout-img" loading="lazy" decoding="async" width="768" height="1376">
           </div>
           <div class="stage-content">
             <span class="stage-num">04 / PRESERVACIÓN TOTAL</span>
@@ -283,7 +285,7 @@
         <div class="gallery-stage" aria-live="polite">
           <!-- Slide 01 -->
           <article class="gallery-slide is-active" data-slide-index="0">
-            <video src="/media/instagram-reel-1.mp4" poster="/media/instagram-thumb-1.jpg" playsinline loop autoplay muted preload="auto"></video>
+            <video src="/media/instagram-reel-1.mp4" poster="/media/instagram-thumb-1.jpg" playsinline loop muted preload="none"></video>
             <span class="slide-badge">01</span>
             <button class="slide-sound-btn" type="button" aria-label="Activar sonido">
               <span class="sound-icon">🔇</span>
@@ -292,7 +294,7 @@
 
           <!-- Slide 02 -->
           <article class="gallery-slide is-next" data-slide-index="1">
-            <video src="/media/instagram-reel-2.mp4" poster="/media/instagram-thumb-2.jpg" playsinline loop></video>
+            <video src="/media/instagram-reel-2.mp4" poster="/media/instagram-thumb-2.jpg" playsinline loop muted preload="none"></video>
             <span class="slide-badge">02</span>
             <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
               <span class="sound-icon">🔊</span>
@@ -301,7 +303,7 @@
 
           <!-- Slide 03 -->
           <article class="gallery-slide" data-slide-index="2">
-            <video src="/media/instagram-reel-3.mp4" poster="/media/instagram-thumb-3.jpg" playsinline loop></video>
+            <video src="/media/instagram-reel-3.mp4" poster="/media/instagram-thumb-3.jpg" playsinline loop muted preload="none"></video>
             <span class="slide-badge">03</span>
             <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
               <span class="sound-icon">🔊</span>
@@ -310,7 +312,7 @@
 
           <!-- Slide 04 -->
           <article class="gallery-slide is-prev" data-slide-index="3">
-            <video src="/media/instagram-reel-4.mp4" poster="/media/instagram-thumb-4.jpg" playsinline loop></video>
+            <video src="/media/instagram-reel-4.mp4" poster="/media/instagram-thumb-4.jpg" playsinline loop muted preload="none"></video>
             <span class="slide-badge">04</span>
             <button class="slide-sound-btn" type="button" aria-label="Activar o silenciar sonido">
               <span class="sound-icon">🔊</span>
@@ -330,19 +332,19 @@
         <!-- Thumbnail Strip -->
         <div class="gallery-thumbs" aria-label="Seleccionar video">
           <button class="is-active" type="button" data-gallery-target="0">
-            <img src="/media/instagram-thumb-1.jpg" alt="Video 1">
+            <img src="/media/instagram-thumb-1.jpg" alt="Video 1" loading="lazy" decoding="async" width="120" height="160">
             <span>01</span>
           </button>
           <button type="button" data-gallery-target="1">
-            <img src="/media/instagram-thumb-2.jpg" alt="Video 2">
+            <img src="/media/instagram-thumb-2.jpg" alt="Video 2" loading="lazy" decoding="async" width="120" height="160">
             <span>02</span>
           </button>
           <button type="button" data-gallery-target="2">
-            <img src="/media/instagram-thumb-3.jpg" alt="Video 3">
+            <img src="/media/instagram-thumb-3.jpg" alt="Video 3" loading="lazy" decoding="async" width="120" height="160">
             <span>03</span>
           </button>
           <button type="button" data-gallery-target="3">
-            <img src="/media/instagram-thumb-4.jpg" alt="Video 4">
+            <img src="/media/instagram-thumb-4.jpg" alt="Video 4" loading="lazy" decoding="async" width="120" height="160">
             <span>04</span>
           </button>
         </div>
@@ -395,7 +397,7 @@
       <div class="team-grid">
         <article class="team-card">
           <div class="team-photo-wrap">
-            <img src="/media/team-simon.jpg" alt="Simón Aravena — CEO" class="team-img" loading="lazy">
+            <img src="/media/team-simon.jpg" alt="Simón Aravena — CEO" class="team-img" loading="lazy" decoding="async" width="720" height="1080">
             <span class="team-badge">CEO</span>
           </div>
           <div class="team-info">
@@ -409,7 +411,7 @@
 
         <article class="team-card">
           <div class="team-photo-wrap">
-            <img src="/media/team-jaime.jpg" alt="Jaime Aravena — Subgerente de Admin y Finanzas" class="team-img" loading="lazy">
+            <img src="/media/team-jaime.jpg" alt="Jaime Aravena — Subgerente de Admin y Finanzas" class="team-img" loading="lazy" decoding="async" width="720" height="1080">
             <span class="team-badge">ADMIN & FINANZAS</span>
           </div>
           <div class="team-info">
@@ -423,7 +425,7 @@
 
         <article class="team-card">
           <div class="team-photo-wrap">
-            <img src="/media/team-javiera.jpg" alt="Javiera Schmidt — Encargada Calidad y Customer Experience" class="team-img" loading="lazy">
+            <img src="/media/team-javiera.jpg" alt="Javiera Schmidt — Encargada Calidad y Customer Experience" class="team-img" loading="lazy" decoding="async" width="720" height="1080">
             <span class="team-badge">CALIDAD & CX</span>
           </div>
           <div class="team-info">
@@ -681,7 +683,7 @@
     <div class="footer-shell">
       <div class="footer-left">
         <div class="footer-crest-row">
-          <img src="/media/logo_grande_gris.png" alt="La Cochera" class="footer-brand-logo">
+          <img src="/media/logo_grande_gris.png" alt="La Cochera" class="footer-brand-logo" width="160" height="32" loading="lazy" decoding="async" onerror="if(this.src.indexOf('logo-original.png')===-1)this.src='/media/logo-original.png';">
         </div>
         <p class="footer-motto">Car Spa & Detailing Atelier · Mall Sport Subterráneo -1, Santiago de Chile.</p>
         <p class="footer-phone">WhatsApp Directo: <a href="https://wa.me/56940566309" target="_blank" rel="noopener noreferrer">(+56) 9 4056 6309</a></p>
